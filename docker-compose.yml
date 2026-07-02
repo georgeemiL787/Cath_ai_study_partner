@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  ai-study-partner:
+    build: .
+    ports:
+      - "8000:8000"
+      - "3000:3000"
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./exports:/app/exports
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - VECTOR_DB_TYPE=faiss
+      - VECTOR_DB_PATH=/app/data/vector_db
+      - PRIVACY_MODE=local
+      - DEBUG=True
+    env_file:
+      - .env
+    restart: unless-stopped
+
+  # Optional: Add a separate service for vector database
+  # vector-db:
+  #   image: milvusdb/milvus:latest
+  #   ports:
+  #     - "19530:19530"
+  #   volumes:
+  #     - milvus_data:/var/lib/milvus
+  #   environment:
+  #     - ETCD_ENDPOINTS=etcd:2379
+  #   depends_on:
+  #     - etcd
+
+  # etcd:
+  #   image: quay.io/coreos/etcd:latest
+  #   environment:
+  #     - ETCD_AUTO_COMPACTION_MODE=revision
+  #     - ETCD_AUTO_COMPACTION_RETENTION=1000
+  #     - ETCD_QUOTA_BACKEND_BYTES=4294967296
+  #     - ETCD_SNAPSHOT_COUNT=50000
+  #   command: etcd -advertise-client-urls=http://127.0.0.1:2379 -listen-client-urls http://0.0.0.0:2379 --data-dir /etcd
+  #   volumes:
+  #     - etcd_data:/etcd
+
+# volumes:
+#   milvus_data:
+#   etcd_data:
+

@@ -1,0 +1,30 @@
+{
+  "name": "ai-study-partner",
+  "version": "1.0.0",
+  "description": "AI-powered study companion with real-time screen and audio capture",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\"",
+    "backend": "cd backend && uvicorn main:app --reload --host 0.0.0.0 --port 8000",
+    "frontend": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "install-all": "pip install -r requirements.txt && cd frontend && npm install",
+    "test": "pytest backend/tests/",
+    "lint": "flake8 backend/ && cd frontend && npm run lint"
+  },
+  "keywords": [
+    "ai",
+    "study",
+    "education",
+    "ocr",
+    "speech-to-text",
+    "rag",
+    "llm"
+  ],
+  "author": "AI Study Partner Team",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
+

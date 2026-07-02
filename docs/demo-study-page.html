@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Study Notes — Neural Networks</title>
+  <style>
+    :root { color-scheme: light; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #e8e2d6;
+      color: #29251f;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+    main {
+      width: min(920px, calc(100% - 64px));
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 54px 72px 72px;
+      background: #fffdf7;
+      box-shadow: 0 0 42px rgb(65 53 38 / 18%);
+    }
+    .chapter { color: #8a6041; font: 700 13px/1.4 Arial, sans-serif; letter-spacing: .18em; text-transform: uppercase; }
+    h1 { margin: 12px 0 8px; font-size: clamp(34px, 5vw, 58px); font-weight: 500; line-height: 1.05; }
+    .subtitle { margin: 0 0 34px; color: #756d63; font-size: 19px; font-style: italic; }
+    h2 { margin-top: 32px; color: #633f29; font-size: 26px; }
+    p, li { font-size: 18px; line-height: 1.7; }
+    .formula {
+      margin: 28px 0;
+      padding: 22px;
+      border: 1px solid #d8c6ad;
+      background: #f6efe3;
+      text-align: center;
+      font-size: 28px;
+    }
+    .note {
+      margin-top: 30px;
+      padding: 18px 22px;
+      border-left: 5px solid #b77a51;
+      background: #f8f3e9;
+      font: 16px/1.6 Arial, sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="chapter">Chapter 4 · Machine Learning Foundations</div>
+    <h1>How Neural Networks Learn</h1>
+    <p class="subtitle">From weighted signals to useful representations</p>
+
+    <p>A neural network learns by adjusting the strength of connections between simple computational units. Each unit combines its inputs, applies an activation function, and passes the result to the next layer.</p>
+
+    <h2>The learning loop</h2>
+    <ol>
+      <li><strong>Forward pass:</strong> transform an input into a prediction.</li>
+      <li><strong>Loss:</strong> measure the difference between prediction and target.</li>
+      <li><strong>Backpropagation:</strong> compute how each weight contributed to the error.</li>
+      <li><strong>Update:</strong> move the weights in the direction that reduces loss.</li>
+    </ol>
+
+    <div class="formula">w<sub>new</sub> = w<sub>old</sub> − η · ∂L/∂w</div>
+
+    <p>The learning rate <em>η</em> controls the size of each update. If it is too large, training may become unstable; if it is too small, learning can be painfully slow.</p>
+
+    <div class="note"><strong>Study prompt:</strong> Explain why backpropagation needs the chain rule, then describe one symptom of an unsuitable learning rate.</div>
+  </main>
+</body>
+</html>
